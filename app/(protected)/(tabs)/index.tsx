@@ -1,7 +1,5 @@
 import { BriefcaseIcon } from '@/assets/svgs/briefcase-icon';
 import { CityIcon } from '@/assets/svgs/city-icon';
-import { SocialIcon } from '@/assets/svgs/social-icon';
-import { CommunityPostsList } from '@/components/community-posts-list';
 import { CompanyProfilesList } from '@/components/company-profiles-list';
 import { JobOffersList } from '@/components/job-offers-list';
 import { LogoutButton } from '@/components/logout-button';
@@ -36,12 +34,6 @@ const TAB_BUTTONS_DATA: TabButtonData[] = [
     value: 'companyProfiles',
     Icon: CityIcon,
     Content: CompanyProfilesList,
-  },
-  {
-    title: 'Community',
-    value: 'community',
-    Icon: SocialIcon,
-    Content: CommunityPostsList,
   },
 ];
 

@@ -1,11 +1,7 @@
 import { OpacityButton } from '@/components/opacity-button';
 import { TextError } from '@/components/text-error';
 import { TextFormInput } from '@/components/text-form-input';
-import {
-  LoginDataSchema,
-  RegisterCompanyDataSchema,
-  RegisterUserDataSchema,
-} from '@/services/api/account/account.types';
+import { LoginDataSchema } from '@/services/api/account/account.types';
 import { useAuth } from '@/services/auth/auth-context';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
@@ -14,6 +10,8 @@ import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { Button, SegmentedButtons, Text } from 'react-native-paper';
 import { z } from 'zod';
+import { RegisterCompanyDataSchema } from '../api/company/company.types';
+import { RegisterUserDataSchema } from '../api/user/user.types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FormValuesSchema = z.union([

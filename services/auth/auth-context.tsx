@@ -2,14 +2,11 @@ import { ErrorView } from '@/components/error/error-view';
 import { LoadingIconView } from '@/components/loading/loading-icon-view';
 import { getApiErrorMessages } from '@/helpers/get-api-error-messages';
 import { api } from '@/services/api';
-import {
-  GetTokenResponse,
-  LoginData,
-  RegisterCompanyData,
-  RegisterUserData,
-} from '@/services/api/account/account.types';
+import { LoginData } from '@/services/api/account/account.types';
 import { useQueryClient } from '@tanstack/react-query';
 import { createContext, PropsWithChildren, useContext, useEffect } from 'react';
+import { RegisterCompanyData } from '../api/company/company.types';
+import { RegisterUserData } from '../api/user/user.types';
 import { deleteAuthToken, saveAuthToken } from './token-storage';
 
 type TAuthContext = {
@@ -38,9 +35,9 @@ const useAuthLogin = (): TAuthContext['login'] => {
     try {
       const response = await loginMutateAsync(loginData);
 
-      if (response?.access_token) {
-        saveAuthToken(response.access_token);
-        queryClient.setQueryData(api.account.keys.getToken(), response satisfies GetTokenResponse);
+      if (response?.accessToken) {
+        saveAuthToken(response.accessToken);
+        queryClient.setQueryData(api.account.keys.getToken(), response);
       }
 
       await queryClient.invalidateQueries({
@@ -115,9 +112,9 @@ const useAuthToken = () => {
   const { data: tokenData, isLoading, isError } = api.account.queries.useGetToken();
 
   useEffect(() => {
-    if (!tokenData?.access_token) return;
-    saveAuthToken(tokenData.access_token);
-  }, [tokenData?.access_token]);
+    if (!tokenData?.accessToken) return;
+    saveAuthToken(tokenData.accessToken);
+  }, [tokenData?.accessToken]);
 
   useEffect(() => {
     if (!isError) return;
